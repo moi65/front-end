@@ -1,0 +1,33 @@
+{
+  "name": "bitbucket-snippet",
+  "version": "0.0.5",
+  "description": "A command-line tool for creating snippets via the Bitbucket REST API.",
+  "main": "snippet.js",
+  "scripts": {"start": "node index.js file.biz -u Philippe",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/tpettersen/bitbucket-snippet"
+  },
+  "keywords": [
+    "bitbucket",
+    "snippet"
+  ],
+  "author": "Tim Pettersen",
+  "license": "Apache-2.0",
+  "bin": {
+    "snippet": "./index.js"
+  },
+  "dependencies": {
+    "bitbucket-auth-token": "0.0.3",
+    "chalk": "^1.1.1",
+    "co": "^4.6.0",
+    "co-prompt": "^1.0.0",
+    "commander": "^2.9.0",
+    "jsonfile": "^2.2.3",
+    "progress": "^1.1.8",
+    "rsvp": "^3.1.0",
+    "superagent": "^1.4.0"
+  }
+}
