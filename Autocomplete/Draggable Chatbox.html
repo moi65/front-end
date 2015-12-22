@@ -1,0 +1,443 @@
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <!--
+Copyright (c) 2015 by Andy Tran (http://codepen.io/andytran/pen/OPxVmq)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+    <title>CodePen - Draggable Chatbox</title>
+
+    <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,400italic,700italic,700'>
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+
+    <style>
+        body {
+            background: #e9e9e9;
+            font-family: 'Roboto', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .chat {
+            background: #ffffff;
+            width: 300px;
+            margin: 0 auto;
+        }
+        
+        .chat header {
+            background: #bd6982;
+            padding: 10px 15px;
+            color: #ffffff;
+            font-size: 14px;
+            cursor: move;
+        }
+        
+        .chat header:before,
+        .chat header:after {
+            display: block;
+            content: '';
+            clear: both;
+        }
+        
+        .chat header h2,
+        .chat .body ul li .content h3 {
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            float: left;
+        }
+        
+        .chat header h2 a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        
+        .chat header .tools {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            float: right;
+        }
+        
+        .chat header .tools li {
+            display: inline-block;
+            margin-right: 6px;
+        }
+        
+        .chat header .tools li:last-child {
+            margin: 0;
+        }
+        
+        .chat header .tools li a {
+            color: #ffffff;
+            text-decoration: none;
+            -webkit-transition: all 0.3s linear 0s;
+            -moz-transition: all 0.3s linear 0s;
+            -ms-transition: all 0.3s linear 0s;
+            -o-transition: all 0.3s linear 0s;
+            transition: all 0.3s linear 0s;
+        }
+        
+        .chat .body {
+            position: relative;
+            max-height: 360px;
+            overflow-y: scroll;
+        }
+        
+        .chat .body .search {
+            display: none;
+            width: 100%;
+        }
+        
+        .chat .body .search.opened {
+            display: block;
+        }
+        
+        .chat .body .search input {
+            width: 100%;
+            margin: 0;
+            padding: 10px 15px;
+            border: none;
+            -webkti-box-size: border-box;
+            -moz-box-size: border-box;
+            box-size: border-box;
+        }
+        
+        .chat .body ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-top: 1px solid #f2f2f2;
+        }
+        
+        .chat .body ul li {
+            position: relative;
+            background: #ffffff;
+            display: block;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        
+        .chat .body ul li:before,
+        .chat .body ul li:after {
+            display: block;
+            content: '';
+            clear: both;
+        }
+        
+        .chat .body ul li:hover .thumbnail {
+            background: #bd6982;
+        }
+        
+        .chat .body ul li:nth-child(2n) {
+            background: #f2f2f2;
+        }
+        
+        .chat .body ul li .thumbnail {
+            display: inline-block;
+            background: #bfbfbf;
+            width: 50px;
+            color: #ffffff;
+            line-height: 50px;
+            text-align: center;
+            text-decoration: none;
+            -webkit-transition: background 0.3s linear 0s;
+            -moz-transition: background 0.3s linear 0s;
+            -ms-transition: background 0.3s linear 0s;
+            -o-transition: background 0.3s linear 0s;
+            transition: background 0.3s linear 0s;
+        }
+        
+        .chat .body ul li .thumbnail img {
+            width: 100%;
+        }
+        
+        .chat .body ul li .content {
+            display: inline-block;
+            margin-left: 6px;
+            vertical-align: top;
+            line-height: 1;
+        }
+        
+        .chat .body ul li .content h3 {
+            display: block;
+            width: 100%;
+            margin-bottom: 5px;
+            color: #808080;
+        }
+        
+        .chat .body ul li .content .preview {
+            display: block;
+            width: 100%;
+            max-width: 200px;
+            margin-bottom: 5px;
+            color: #cccccc;
+            font-size: 12px;
+        }
+        
+        .chat .body ul li .content .meta {
+            color: #b3b3b3;
+            font-size: 12px;
+        }
+        
+        .chat .body ul li .content .meta a {
+            color: #999999;
+            text-decoration: none;
+        }
+        
+        .chat .body ul li .content .meta a:hover {
+            text-decoration: underline;
+        }
+        
+        .chat .body ul li .message {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        
+        .chat footer a {
+            background: #bd6982;
+            display: block;
+            width: 100%;
+            padding: 10px 15px;
+            color: #ffffff;
+            font-size: 14px;
+            text-align: center;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        
+        .chat footer a:hover {
+            background: #cd8ca0;
+            -webkit-transition: background 0.3s linear 0s;
+            -moz-transition: background 0.3s linear 0s;
+            -ms-transition: background 0.3s linear 0s;
+            -o-transition: background 0.3s linear 0s;
+            transition: background 0.3s linear 0s;
+        }
+        
+        .info {
+            width: 300px;
+            margin: 25px auto;
+            text-align: center;
+        }
+        
+        .info h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 24px;
+            font-weight: 400;
+            color: #333333;
+        }
+        
+        .info span {
+            color: #666666;
+            font-size: 12px;
+        }
+        
+        .info span a {
+            color: #000000;
+            text-decoration: none;
+        }
+        
+        .info span .fa {
+            color: #bd6982;
+        }
+        
+        .info span .spoilers {
+            color: #999999;
+            margin-top: 5px;
+            font-size: 10px;
+        }
+    </style>
+
+    <script>
+        window.console = window.console || function (t) {};
+        window.open = function () {
+            console.log('window.open is disabled.');
+        };
+        window.print = function () {
+            console.log('window.print is disabled.');
+        };
+        // Support hover state for mobile.
+        if (false) {
+            window.ontouchstart = function () {};
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class='info'>
+        <h1>Draggable Chatbox</h1>
+        <span>
+    Made with
+    <i class='fa fa-heart animated infinite pulse'></i>
+    by
+    <a href='http://andytran.me'>Andy Tran</a>
+    <div class='spoilers'>
+      (Click the search button) | (Scroll the chat)
+    </div>
+  </span>
+    </div>
+    <div class='chat'>
+        <header>
+            <h2 class='title'>
+      <a href='http://www.elegantthemes.com/'>ElegantThemes</a>
+    </h2>
+            <ul class='tools'>
+                <li>
+                    <a class='fa fa-gear' href='#'></a>
+                </li>
+                <li>
+                    <a class='fa fa-search' href='#'></a>
+                </li>
+            </ul>
+        </header>
+        <div class='body'>
+            <div class='search'>
+                <input placeholder='Search...' type='text'>
+            </div>
+            <ul>
+                <li>
+                    <a class='thumbnail' href='#'>
+          NR
+        </a>
+                    <div class='content'>
+                        <h3>Nick Roach</h3>
+                        <span class='preview'>hey how are things going on the...</span>
+                        <span class='meta'>
+            2h ago &middot;
+            <a href='#'>Category</a>
+            &middot;
+            <a href='#'>Reply</a>
+          </span>
+                    </div>
+                </li>
+                <li>
+                    <a class='thumbnail' href='#'>
+          KS
+        </a>
+                    <div class='content'>
+                        <h3>Kenny Sing</h3>
+                        <span class='preview'>make sure you take a look at the...</span>
+                        <span class='meta'>
+            3h ago &middot;
+            <a href='#'>Category</a>
+            &middot;
+            <a href='#'>Reply</a>
+          </span>
+                    </div>
+                </li>
+                <li>
+                    <a class='thumbnail' href='#'>
+          MS
+        </a>
+                    <div class='content'>
+                        <h3>Mitch Skolnik</h3>
+                        <span class='preview'>i love wood grain things!</span>
+                        <span class='meta'>
+            6h ago &middot;
+            <a href='#'>Category</a>
+            &middot;
+            <a href='#'>Reply</a>
+          </span>
+                    </div>
+                </li>
+                <li>
+                    <a class='thumbnail' href='#'>
+          YP
+        </a>
+                    <div class='content'>
+                        <h3>Yuriy Portnykh</h3>
+                        <span class='preview'>check issues for the latest version...</span>
+                        <span class='meta'>
+            10h ago &middot;
+            <a href='#'>Category</a>
+            &middot;
+            <a href='#'>Reply</a>
+          </span>
+                    </div>
+                </li>
+                <li>
+                    <a class='thumbnail' href='#'>
+          JR
+        </a>
+                    <div class='content'>
+                        <h3>Josh Ronk</h3>
+                        <span class='preview'>make sure to do the following by...</span>
+                        <span class='meta'>
+            2d ago &middot;
+            <a href='#'>Category</a>
+            &middot;
+            <a href='#'>Reply</a>
+          </span>
+                    </div>
+                </li>
+                <li>
+                    <a class='thumbnail' href='#'>
+          BM
+        </a>
+                    <div class='content'>
+                        <h3>Benjamin Mueller</h3>
+                        <span class='preview'>Hi nice to meet you!</span>
+                        <span class='meta'>
+            1w ago &middot;
+            <a href='#'>Category</a>
+            &middot;
+            <a href='#'>Reply</a>
+          </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <footer>
+            <a href='#'>View All Messages</a>
+        </footer>
+    </div>
+
+    <script src='//assets.codepen.io/assets/libs/fullpage/jquery-c152c51c4dda93382a3ae51e8a5ea45d.js'></script>
+    <script src='https://code.jquery.com/ui/1.11.2/jquery-ui.min.js'></script>
+
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage('resize', "*");
+        }
+    </script>
+
+    <script src="//assets.codepen.io/assets/common/stopExecutionOnTimeout-6c99970ade81e43be51fa877be0f7600.js"></script>
+
+    <script>
+        $('.fa-search').click(function () {
+            $(this).stop().toggleClass('fa-close');
+            $('.search').stop().animate({
+                height: 'toggle',
+                opacity: 'toggle'
+            }, 300);
+        });
+        $('.chat').draggable({
+            handle: 'header'
+        });
+        //@ sourceURL=pen.js
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" value="notranslate">
+
+
+    <title>CodePen - vanilla</title>
+
+
+
+
+    <style>
+        @import url("http://bootswatch.com/paper/bootstrap.min.css");
+        /* BOOTSTRAP 3.x GLOBAL STYLES
+-------------------------------------------------- */
+        
+        body {
+            padding-bottom: 40px;
+            color: #5a5a5a;
+        }
+        /* CUSTOMIZE ...
+-------------------------------------------------- */
+        /* Featurettes
+------------------------- */
+        
+        .featurette-divider {
+            margin: 80px 0;
+            /* Space out the Bootstrap <hr> more */
+        }
+        
+        .featurette {
+            padding-top: 120px;
+            /* Vertically center images part 1: add padding above and below text. */
+            overflow: hidden;
+            /* Vertically center images part 2: clear their floats. */
+        }
+        
+        .featurette-image {
+            margin-top: -120px;
+            /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+        }
+        /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+        
+        .featurette-image.pull-left {
+            margin-right: 40px;
+        }
+        
+        .featurette-image.pull-right {
+            margin-left: 40px;
+        }
+        /* Thin out the marketing headings */
+        
+        .featurette-heading {
+            font-size: 50px;
+            font-weight: 300;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+        
+        body {
+            /*background-color: #2E2E2E;*/
+            font-family: 'Open Sans', sans-serif;
+            color: #686868;
+            padding-top: 50px;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4 {
+            text-transform: uppercase;
+            font-weight: 400;
+            letter-spacing: .1em;
+            font-family: "Open Sans", sans-serif;
+        }
+        
+        h1 {
+            font-size: 20px;
+            border-bottom: 1px solid;
+            padding: 10px 0;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <script>
+        window.console = window.console || function (t) {};
+    </script>
+
+
+
+</head>
+
+<body>
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+    <div class="well">
+        <form id="qaForm" method="post" class="form-horizontal">
+            <fieldset>
+                <div class="form-group row">
+                    <h4 for="select" class="col-lg-12">Select corpus:</h4>
+                    <div class="col-lg-12">
+                        <select id="mySelect" name="dataset" onchange="showExample(this);" class="form-control">
+                            <option>had he</option>
+                            <option>had she</option>
+                            <option>had they</option>
+                            <option>Had they been singing? ( = Est-ce qu’ils chantaient ?)</option>
+                            <option>Had they talked? ( = Avaient-ils parlé ?)</option>
+                            <option>had we</option>
+                            <option>had you</option>
+                            <option>Had you not / Hadn’t you been listening? ( = N’avais-tu pas écouté ?)</option>
+                            <option>Had you not / hadn’t you slept? ( = N’avais-tu pas dormi ?)</option>
+                            <option>hadn&#39;t</option>
+                            <option>hadn&#39;t he?</option>
+                            <option>hadn&#39;t she?</option>
+                            <option>hadn&#39;t we?</option>
+                            <option>hadn&#39;t you?</option>
+                            <option>HARDLY ANY /</option>
+                            <option>hardly any ball /</option>
+                            <option>hardly any milk /</option>
+                            <option>has she</option>
+                            <option>Has she not / hasn’t she been talking? ( = Ne parle-t-elle pas ?)</option>
+                            <option>hasn&#39;t she?</option>
+                            <option>have</option>
+                            <option>have à l’infinitif</option>
+                            <option>HAVE au présent + PP (ex : He + has + played)</option>
+                            <option>HAVE au prétérit + PP (ex : He + had + played)</option>
+                            <option>have they</option>
+                            <option>Have they been playing? ( = Est-ce qu’ils jouent ?)</option>
+                            <option>have we</option>
+                            <option>have you</option>
+                            <option>Have you not / haven’t you drunk? ( = N’as-tu pas bu ?)</option>
+                            <option>haven&#39;t</option>
+                            <option>He came in spite of his being sick / him being sick.</option>
+                            <option>he did -he did not he didn&#39;t did he? -did he not? didn&#39;t he?</option>
+                            <option>He didn’t do his homework yesterday. ( = Il n’a pas fait ses devoirs hier.) : verbe</option>
+                            <option>He died in 1980. ( = Il est mort en 1980.)</option>
+                            <option>he does -he does not he doesn&#39;t does he? -</option>
+                            <option>He had finished but she hadn’t. ( = Il avait fini mais pas elle.)</option>
+                            <option>he had he&#39;d he had not you&#39;d not / had he? -</option>
+                            <option>He has been to England. ( = Il a été en Angleterre.) : verbe lexical be conjugué au</option>
+                            <option>He has had a bath. ( = Il a pris un bain.) : verbe lexical have conjugué au present</option>
+                            <option>he has he&#39;s he has not you&#39;ve not / has he? -has he not? hasn&#39;t he?</option>
+                            <option>He has just arrived. ( = Il vient (juste) d’arriver.)</option>
+                            <option>He has not / he hasn’t / he’s not won. ( = Il n’a pas gagné.)</option>
+                            <option>He hasn’t finished his homework yet. ( = Il n’a pas encore fini ses devoirs.)</option>
+                            <option>he hasn&#39;t have we? -</option>
+                            <option>he il him lui, le, lui himself se, lui-même</option>
+                            <option>he il his son his (le) sien</option>
+                            <option>He is having a bath. ( = Il est entrain de prendre bain.) : verbe lexical have conjugué</option>
+                            <option>he is he&#39;s he is not</option>
+                            <option>He is not as rich as his sister. / He is not so rich as her sister.</option>
+                            <option>He is wearing a hat. ( = Il porte un chapeau.)</option>
+                            <option>he isn&#39;t</option>
+                            <option>He may not have won. ( = Il n’a probablement pas gagné.)</option>
+                            <option>He must have left. ( = Il a dû partir / Il doit être parti / Il est sûrement parti.)</option>
+                            <option>He was forbidden to speak. ( = Il lui était interdit de parler.)</option>
+                            <option>he was -he was not he wasn&#39;t was he? -</option>
+                            <option>He will / he’ll play tennis next week.</option>
+                            <option>He will be able to swim. ( = Il sera capable de / Il saura nager.)</option>
+                            <option>He won’t stay here for a long time, will he?</option>
+                            <option>He would come as soon as he was ready.</option>
+                            <option>He’s not eating. ( = Il n’est pas entrain de manger.)</option>
+                            <option>here ® there</option>
+                            <option>he&#39;s not /</option>
+                            <option>How are you?</option>
+                            <option>HOW COMMENT</option>
+                            <option>How is your new teacher?</option>
+                            <option>HOW LONG</option>
+                            <option>How long have you been in Paris?</option>
+                            <option>How long is the film?</option>
+                            <option>How long is the road?</option>
+                            <option>HOW LONG QUELLE LONGUEUR</option>
+                            <option>HOW MANY</option>
+                            <option>How many books did you read?</option>
+                            <option>HOW MUCH</option>
+                            <option>How much water do you want?</option>
+                            <option>How often do you see him?</option>
+                            <option>HOW OFTEN TOUS LES COMBIEN</option>
+                            <option>HOWEVER ( = cependant) P</option>
+                            <option>I am I&#39;m I am not I&#39;m not am I? -am I not? aren&#39;t I?</option>
+                            <option>I am playing tennis and so is she.</option>
+                            <option>I did -I did not I didn&#39;t did I? -did I not? didn&#39;t I?</option>
+                            <option>I didn’t have any breakfast this morning.</option>
+                            <option>I do -I do not I don&#39;t do I? -do I not? don&#39;t I?</option>
+                            <option>I don’t have a car. (American English) ( = Je n’ai pas de voiture.)</option>
+                            <option>I don’t have any ball. /</option>
+                            <option>I had I&#39;d I had not I&#39;d not / had I? -had I not? hadn&#39;t I?</option>
+                            <option>I hate vegetables.</option>
+                            <option>I have I&#39;ve I have not I&#39;ve not / have I? -have I not? haven&#39;t I?</option>
+                            <option>I have no ball.</option>
+                            <option>I haven’t been driving. ( = Je n’ai pas conduit.)</option>
+                            <option>I haven’t had any breakfast this morning.</option>
+                            <option>I haven’t seen him so far. ( = Je ne l’ai pas encore vu.)</option>
+                            <option>I haven&#39;t have you? -</option>
+                            <option>I hope that you will come with us. ( = J’espère que tu viendras avec nous.)</option>
+                            <option>I je me moi, me, me myself me, moi-même</option>
+                            <option>I je my mon* mine (le) mien*</option>
+                            <option>I prefer meat.</option>
+                            <option>I saw them 5 minutes ago. ( = Je les ai vus il y a 5 minutes.)</option>
+                            <option>I was -I was not I wasn&#39;t was I? -was I not? wasn&#39;t I?</option>
+                            <option>I will not / I won’t be at home. ( = Je ne serai pas à la maison.)</option>
+                            <option>I work better than you do. ( = Je travaille mieux que toi.)</option>
+                            <option>I would have played tennis if it hadn’t rained / if I had finished my work.</option>
+                            <option>I would prefer not to see him. ( = Je préfèrerais ne pas le voir.)</option>
+                            <option>I’d do it if I could. ( = Je le ferais si je pouvais. ’d = would)</option>
+                            <option>I’ll remember him as long as I live.</option>
+                            <option>I’m not going to go and see that film. ( = Je ne vais pas aller voir ce film.)</option>
+                            <option>I’ve liked tennis since I was a child.</option>
+                            <option>Ici aussi on insiste sur l’action puisqu’on donne même des précisions sur cette</option>
+                            <option>Ici le prétérit simple correspond au passé simple français, mais souvent dans le</option>
+                            <option>Ici les deux actions sont entrain de se dérouler prétérit progressif.</option>
+                            <option>Ici on demande s’il peut venir, peut-être qu’il pourra.</option>
+                            <option>Ici on emploie le prétérit simple car on insiste sur l’action, de plus l’action est datée.</option>
+                            <option>Ici on n’insiste pas sur l’action mais plutôt sur le fait que maintenant ils ont une</option>
+                            <option>Idem : les temps ne changent pas.</option>
+                            <option>Idem pour tous les adjectifs.</option>
+                            <option>IF ( = si) P</option>
+                            <option>If only he were here. ( = Si seulement il était là.)</option>
+                            <option>Il est fréquent d’avoir une action soudaine (au prétérit simple) qui vient interrompre</option>
+                            <option>Il faut modifier le temps de la phrase rapportée comme suit lorsqu&#39;elle est au :</option>
+                            <option>Il ne faut pas confondre les pronoms relatifs avec les interrogatifs.</option>
+                            <option>Il n&#39;y a plus de lait.)</option>
+                            <option>Il se conjugue toutefois avec l’auxiliaire do au présent de l’impératif (Don’t be</option>
+                            <option>Il se trouve au début de la phrase mais ce n&#39;est pas l’interrogatif WHAT. Il se traduit</option>
+                            <option>Il suffit de réécrire le modal et ensuite c’est pareil que précédemment.</option>
+                            <option>Il suffit donc :</option>
+                            <option>Il y a alors deux constructions possibles pour la voix passive selon que l&#39;on choisit</option>
+                            <option>Il y a des règles pour savoir si un verbe a une forme progressive mais le plus simple</option>
+                            <option>Impératif</option>
+                            <option>INDEED ( = en effet) P</option>
+                            <option>indirect</option>
+                            <option>indispensables, on pourrait les supprimer. Dans ce cas on ne peut jamais remplacer le</option>
+                            <option>Interrogatif Traduction Exemple</option>
+                            <option>Interrogation</option>
+                            <option>is he? -is he not? isn&#39;t he?</option>
+                            <option>is it? -is it not? isn&#39;t it?</option>
+                            <option>Is she not watching TV? ( = N’est-elle pas entrain de regarder la télé ?)</option>
+                            <option>is she? -is she not? isn&#39;t she?</option>
+                            <option>it did -it did not it didn&#39;t did it? -did it not? didn&#39;t it?</option>
+                            <option>it does -it does not it doesn&#39;t does it? -does it not? doesn&#39;t it?</option>
+                            <option>it had it&#39;d it had not he&#39;d not / had it? -had it not? hadn&#39;t it?</option>
+                            <option>it has it&#39;s it has not he&#39;s not / has it? -has it not? hasn&#39;t it?</option>
+                            <option>it il / elle it le / la itself se</option>
+                            <option>it il / elle its son its own** (le) sien</option>
+                            <option>it is it&#39;s it is not</option>
+                            <option>it isn&#39;t</option>
+                            <option>It may be raining. ( = Peut-être qu’il pleut en ce moment.)</option>
+                            <option>it was -it was not it wasn&#39;t was it? -was it not? wasn&#39;t it?</option>
+                            <option>It was raining. ( = Il pleuvait.)</option>
+                            <option>It’s high time you came. ( = Il est grand temps que tu viennes.)</option>
+                            <option>it&#39;s not /</option>
+                            <option>I&#39;ve been playing since 10 am. Oui ( = Je joue depuis 10h du matin.) </option>
+                            <option value="healthcare" selected="">Healthcare</option>
+                            <option value="travel">Travel</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div style="margin-top:10px;" class="col-lg-10">
+                        <input id="questionText" name="questionText" placeholder="Type a question..." required="true" value="What are the benefits of taking aspirin daily?" class="form-control"><a href="javascript:showExample(true)" style="padding-left:0px;" class="btn btn-link">Try an example question</a></div>
+                    <div style="margin-top:10px;" class="col-lg-2">
+                        <button type="submit" class="btn btn-block">Ask</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <h4>H4</h4>
+    <div id='conteneur'>..</div>
+
+
+    <p>This example uses the addEventListener() method to attach a "click" event to a p element.</p>
+
+    <p id="demo">Click me.</p>
+    <script src="//assets.codepen.io/assets/common/stopExecutionOnTimeout-f961f59a28ef4fd551736b43f94620b5.js"></script>
+
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script>
+        'use strict';
+        console.clear();
+        var x = document.getElementsByTagName('h4');
+        x.innerHTML = 'Chaine de caract\xE8re';
+        var c = document.getElementById('conteneur');
+        c.textContent = 'Chaine de caract\xE8re';
+        document.body.innerHTML += '<div id=\'myDiv\'>Hello</div>';
+
+        function showExample(z) {
+            var x = document.getElementById('mySelect').selectedIndex;
+            var y = document.getElementById('mySelect').options;
+            console.log(x, '-------', y[x].text);
+            var o = z.options,
+                oi = z.selectedIndex;
+            console.log(o[oi].text);
+            var c = document.getElementById('conteneur');
+            c.textContent = o[oi].text;
+            c.innerHTML = '<em>' + o[oi].text + '</em>';
+        }
+
+        function myFunction() {
+            document.getElementById('mySelect').selectedIndex = '2';
+        }
+        document.getElementById('demo').addEventListener('click', myFunction);
+
+        function myFunction() {
+            document.getElementById('demo').innerHTML = 'YOU CLICKED ME!';
+        }
+        //@ sourceURL=pen.js
+    </script>
+
+
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Untitled Document</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+</head>
+
+<body>
+
+    <h2>Pleeease</h2>
+
+    <p></p>
+
+    <p>Outil par&nbsp;<a href="http://www.alsacreations.com/profil/lire/1-raphael.html">Raphael</a>&nbsp;(Int&eacute;grateur du Dimanche, Strasbourg)
+        <br /> Cr&eacute;&eacute; le&nbsp;13 Mai 2014&nbsp;(12795 lectures)&nbsp;
+        <br /> Tags :&nbsp;<a href="http://www.alsacreations.com/search/tag/prefixes">prefixes</a>,&nbsp;<a href="http://www.alsacreations.com/search/tag/rem">rem</a>,&nbsp;<a href="http://www.alsacreations.com/search/tag/workflow">workflow</a>,&nbsp;<a href="http://www.alsacreations.com/search/tag/minification">minification</a>,<a href="http://www.alsacreations.com/search/tag/postprocesseur">postprocesseur</a></p>
+
+    <p>Dans le monde merveilleux de l&#39;int&eacute;gration front-end, certains outil permettent de se faciliter la vie et d&#39;automatiser certaines t&acirc;ches r&eacute;p&eacute;titives.</p>
+
+    <p>Parmi ces outils, les pr&eacute;processeurs sont de plus en plus connus et usit&eacute;s. Un pr&eacute;processeur agit en amont de l&#39;int&eacute;gration et produit la feuille de style &quot;standard&quot;.</p>
+
+    <p>Par contre, bien moins connus sont les&nbsp;<a href="http://blog.goetter.fr/articles/goutez-aux-postprocesseurs-css/"><strong>post</strong>processeurs</a>&nbsp;: ceux-l&agrave; interviennent &agrave; partir d&#39;une feuille CSS standard pour la rendre lisible ou compatible universellement. L&#39;exemple de postprocesseur le plus c&eacute;l&egrave;bre &eacute;tant&nbsp;<a href="https://twitter.com/autoprefixer">Autoprefixer</a>&nbsp;: donnez-lui des CSS non pr&eacute;fix&eacute;s et il se d&eacute;brouille pour ajouter les pr&eacute;fixes n&eacute;cessaires manquants.</p>
+
+    <h3>Pleeease &agrave; votre service</h3>
+
+    <p>Parmi les postprocesseurs, un nouvel outil d&eacute;j&agrave; tr&egrave;s prometteur vient de voir le jour en version de test&nbsp;:&nbsp;<a href="http://pleeease.io/"><strong>Pleeease.io</strong></a>&nbsp;(avec 3 &quot;e&quot;).</p>
+
+    <p>Con&ccedil;u par&nbsp;<a href="http://iamvdo.me/">Vincent de Oliveira</a>, Pleeease est le couteau suisse des postprocesseurs, il offre toutes les fonctionnalit&eacute;s suivantes par d&eacute;faut&nbsp;:</p>
+
+    <ul>
+        <li>Pr&eacute;fixes automatiques</li>
+        <li>Variables CSS &quot;standards&quot;</li>
+        <li>Alternatives pour l&#39;unit&eacute;&nbsp;<code>rem</code>&nbsp;et les pseudo-&eacute;l&eacute;ments tels que<code>::before</code>&nbsp;ou&nbsp;<code>::after</code></li>
+        <li>Concat&eacute;nation des media queries identiques</li>
+        <li>Concat&eacute;nation automatique des fichiers CSS</li>
+        <li>Minification du fichier CSS final</li>
+    </ul>
+
+    <p>Pour vous en convaincre, n&#39;h&eacute;sitez pas &agrave; tester le bac &agrave; sable<a href="http://pleeease.io/playground.html" lang="en">(&quot;Playground&quot;)</a>.</p>
+
+    <p><img alt="Pleeease Playground" src="http://www.alsacreations.com/xmedia/doc/full/pleeease1.png" /></p>
+
+    <h3>Installation et configuration</h3>
+
+    <p>Pleeease est un outil bas&eacute; sur&nbsp;<a href="http://www.alsacreations.com/outils/lire/1624-pleeease.html">NodeJS</a>, que vous devez installer au pr&eacute;alable.</p>
+
+    <p>Ensuite, en ligne de commande, installez Pleeease de cette mani&egrave;re&nbsp;:</p>
+
+    <pre>
+<code>npm install -g pleeease</code></pre>
+
+    <p>Et c&#39;est tout ! Pour la suite, je vous invite &agrave; suivre les instructions directement en ligne sur&nbsp;<a href="http://pleeease.io/index.html#how-it-works">le site de Pleeease</a>.</p>
+
+    <p>Bon postprocessing !</p>
+
+    <h1>enBasicJS</h1>
+    <form id="basic-form" onsubmit="parse(); return false;">
+        <input type="text" id="basic-input" value="enter text to be checked.." />
+        <input type="submit" onclick="parse(); return false;" value="Parse" />
+    </form>
+
+    <p id="basic-output"></p>
+
+    <script src="en-basic.js"></script>
+    <script>
+        function parse(e) {
+            if (e) e.preventDefault();
+            var input = document.getElementById('basic-input');
+            var output = document.getElementById('basic-output');
+            var text = input.value;
+            output.innerHTML = enBasic.highlight(text);
+        }
+    </script>
+
+</body>
+
+</html>
